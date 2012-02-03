@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^s/(.+)$ /index.php?hash=$1 [QSA,L]
+RewriteRule ^([a-z0-9]+)$ /index.php?hash=$1 [QSA,L]
