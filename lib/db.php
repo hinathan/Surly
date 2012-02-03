@@ -33,3 +33,17 @@ function query_row($sql) {
 	}
 	return $rv;
 }
+
+function munge($string,$len=5) {
+	$alphabet = 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXZ0123456789';
+	$rv = '';
+	$seed = sha1('test' . $string);
+	for($i=0;$i<strlen($seed);$i+=2) {
+		$slab = hexdec($seed[$i] . $seed[$i+1]);
+		$val = $alphabet[$slab % strlen($alphabet)];
+		$rv .= $val;
+		if(strlen($rv) >= $len) {
+			return $rv;
+		}
+	}
+}
